@@ -1,7 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 import * as types from '../types';
 
-const todoReducer = (state = [], { type, payload }) => {
+const ls = localStorage.getItem('state');
+const initState = JSON.parse(ls) || [];
+
+const todoReducer = (state = initState, { type, payload }) => {
   switch (type) {
     case types.ADD_TODO: {
       return [...state, {
@@ -11,7 +14,7 @@ const todoReducer = (state = [], { type, payload }) => {
         createdAt: new Date().getTime(),
       }];
     }
-    case types.UPDATE_TODO: {
+    case types.TOGGLE_TODO: {
       return state.map(el => (el.id === payload
         ? { ...el, isDone: !el.isDone }
         : el));

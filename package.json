@@ -12,14 +12,18 @@
     "react-redux": "^8.0.2",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
+    "redux-mock-store": "^1.5.4",
     "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start lint-watch",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint '**/*.js'",
+    "lint-watch": "nodemon --exec 'npm run lint --silent'",
+    "fix": "npm run lint -- --fix"
   },
   "browserslist": {
     "production": [
@@ -35,6 +39,7 @@
   },
   "devDependencies": {
     "eslint": "^8.19.0",
-    "eslint-config-salt": "^1.2.0"
+    "eslint-config-salt": "^1.2.0",
+    "jest": "^28.1.2"
   }
 }

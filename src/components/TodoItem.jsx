@@ -3,7 +3,12 @@ import React from 'react';
 // Components
 import Button from './layout/Button';
 
-const TodoItem = ({ todo, deleteTodo, updateTodo }) => {
+// e2e tests
+import { testClass } from '../test';
+
+const TodoItem = ({
+  todo, deleteTodo, toggleTodo, className,
+}) => {
   const handleDelete = e => {
     e.stopPropagation();
     e.preventDefault();
@@ -13,15 +18,15 @@ const TodoItem = ({ todo, deleteTodo, updateTodo }) => {
   const handleUpdate = e => {
     e.stopPropagation();
     e.preventDefault();
-    updateTodo(todo.id);
+    toggleTodo(todo.id);
   };
 
   return (
-    <article>
-      <button type="submit" onClick={handleUpdate}>
-        <h1>{todo.title}</h1>
+    <article className={className}>
+      <button className={testClass.todoToggle} type="submit" onClick={handleUpdate}>
+        <h2>{todo.title}</h2>
         <p>{todo.description}</p>
-        <Button onClick={handleDelete} type="submit" txt="delete" />
+        {todo.isDone ? <Button className={testClass.todoDelete} onClick={handleDelete} type="submit" txt="X" /> : null}
       </button>
     </article>
 
